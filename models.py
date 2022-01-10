@@ -57,13 +57,12 @@ class User(db.Model):
             flash("Please login")
             return redirect('/login')
         elif user.username != session['username']:
-            return "Do not have permission"
+            flash("Do not have permission")
+            return redirect('/')
         elif user.username == session['username']:
             return user
         else:
             return False
-        
-
 
 
 

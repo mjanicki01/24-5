@@ -86,8 +86,10 @@ def logout_user():
 def user_detail(username):
     user = User.authorize(username)
 
-    return render_template('userdetail.html', user=user)
-
+    if user != "Do not have permission" or user != redirect('/login'):
+        return render_template('userdetail.html', user=user)
+    else:
+        return user
 
 @app.route('/users/<username>/delete', methods=["POST"])
 def delete_user(username):
